@@ -59,6 +59,12 @@ angular.module('ui.bootstrap.contextMenu', [])
             zIndex: 9999
         });
         $(document).find('body').append($contextMenu);
+
+        var menuHeight = $ul[0].clientHeight;
+        if (event.clientY + menuHeight >= window.innerHeight) {
+            $ul.css('top', (event.pageY - menuHeight) + 'px');
+        }
+
         $contextMenu.on("mousedown", function (e) {
             if ($(e.target).hasClass('dropdown')) {
                 $(event.currentTarget).removeClass('context');
